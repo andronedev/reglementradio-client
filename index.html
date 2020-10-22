@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app" class="playerdiv">
+       
+            <img class="btnplay" @click="playbtn" v-if="play" src="./assets/stop.svg">
+            <img class="btnplay"  @click="playbtn" v-else src="./assets/play.svg">
+        
+    </div>
+    <p class="cerdit">Version bêta, par AndroneDev | <small> Non affilié au <a href="https://play.google.com/store/apps/details?id=com.reglement&hl=en_US&gl=US">Règlement radio</a></small></p>
+
+
+    <div id="follower">
+        <div id="circle1"></div>
+        <div id="circle2"></div>
+      </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                play:false,
+                isloading:true,
+                streamurl:"https://radio.lereglement.sale/stream",
+                audio:null
+
+            },
+            methods: {
+                playbtn(){
+                   
+                   if(this.play){
+                       this.play = false
+                       this.audio.pause();
+                        
+
+                   }else{
+                        this.play = true
+                        this.audio.play();
+
+
+                   } 
+                }
+            },
+            mounted () {
+               this.audio = new Audio(this.streamurl);
+                
+            }
+        })
+        
+    </script>
+</body>
+
+</html>
